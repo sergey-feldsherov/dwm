@@ -60,9 +60,12 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char mutecmd[] = "pamixer -t ; kill -38 $(pidof dwmblocks)";
-static const char incvolcmd[] = "pamixer -i 5; kill -38 $(pidof dwmblocks)";
-static const char decvolcmd[] = "pamixer -d 5; kill -38 $(pidof dwmblocks)";
+
+static const char mutecmd[] = "pamixer -t ; kill -39 $(pidof dwmblocks)";
+static const char decvolcmd[] = "pamixer -d 5; kill -39 $(pidof dwmblocks)";
+static const char incvolcmd[] = "pamixer -i 5; kill -39 $(pidof dwmblocks)";
+static const char decbricmd[] = "pkexec /usr/bin/brillo -u 100000 -q -U 5; kill -41 $(pidof dwmblocks)";
+static const char incbricmd[] = "pkexec /usr/bin/brillo -u 100000 -q -A 5; kill -41 $(pidof dwmblocks)";
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -102,6 +105,9 @@ static Key keys[] = {
 	{ 0,                XF86XK_AudioMute,     spawn,           SHCMD(mutecmd) },
 	{ 0,         XF86XK_AudioLowerVolume,     spawn,           SHCMD(decvolcmd) },
 	{ 0,         XF86XK_AudioRaiseVolume,     spawn,           SHCMD(incvolcmd) },
+	{ 0,        XF86XK_MonBrightnessDown,     spawn,           SHCMD(decbricmd) },
+	{ 0,          XF86XK_MonBrightnessUp,     spawn,           SHCMD(incbricmd) },
+
 };
 
 /* button definitions */
