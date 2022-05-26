@@ -61,15 +61,12 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
-static const char mutecmd[] = "pamixer -t ; kill -39 $(pidof dwmblocks)";
-static const char decvolcmd[] = "pamixer -d 5; kill -39 $(pidof dwmblocks)";
-static const char incvolcmd[] = "pamixer -i 5; kill -39 $(pidof dwmblocks)";
-static const char decbricmd[] = "pkexec /usr/bin/brillo -u 100000 -q -U 5; kill -41 $(pidof dwmblocks)";
-static const char incbricmd[] = "pkexec /usr/bin/brillo -u 100000 -q -A 5; kill -41 $(pidof dwmblocks)";
+static const char *passmenucmd[] = { "passmenu", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = passmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -102,11 +99,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ 0,                XF86XK_AudioMute,     spawn,           SHCMD(mutecmd) },
-	{ 0,         XF86XK_AudioLowerVolume,     spawn,           SHCMD(decvolcmd) },
-	{ 0,         XF86XK_AudioRaiseVolume,     spawn,           SHCMD(incvolcmd) },
-	{ 0,        XF86XK_MonBrightnessDown,     spawn,           SHCMD(decbricmd) },
-	{ 0,          XF86XK_MonBrightnessUp,     spawn,           SHCMD(incbricmd) },
 
 };
 
