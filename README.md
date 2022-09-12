@@ -3,3 +3,4 @@
 ## patches
 
 * shiftview
+* fullgaps-toggle
