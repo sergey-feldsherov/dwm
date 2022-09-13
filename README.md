@@ -17,3 +17,4 @@ my dwm build with some patches and modifications
 * shiftview
 * fullgaps-toggle
 * pertag-perseltag
+* dynamicswallow
