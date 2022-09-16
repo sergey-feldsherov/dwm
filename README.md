@@ -1,6 +1,6 @@
-# dwm
+# my build of dwm
 
-my dwm build with some patches and modifications
+dwm version: 6.3
 
 ## hotkeys
 
